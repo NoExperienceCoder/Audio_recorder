@@ -1,0 +1,41 @@
+.whole {
+    margin: auto;
+    width: 40%;
+    border: 5px solid #FFFF00;
+    padding: 10px;
+    }
+.bar {
+    --volume: 0%;
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.bar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 5px;
+    width: var(--volume);
+    background-color: green;
+    transition: width 100ms linear;
+}
+
+.techkib-online-tool-button {
+    background-color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 5px;
+    color: yellow;
+    padding: 12px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+}

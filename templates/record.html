@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Meet Audio Recorder</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="templates/main.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="templates/testMic.html">Check Mic</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="templates/testCam.html">Check Camera</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+    <div class="RecordPanel">
+      <form >
+        <div>
+      <button type="button" class="btn btn-outline-primary" id="start">Start</button>
+    </div>
+    <div>   
+      <button type="button" class="btn btn-outline-primary" id="stop">Stop</button>
+    </div> 
+    <div> 
+      <input type="text" name="SaveAs" id="saver" placeholder="Save file as ">
+    </div>  
+      <a id="download">Download</a>
+        </form>
+    </div>
+<script>
+  const downloadLink = document.getElementById('download');
+  const stopButton = document.getElementById('stop');
+  const startButton = document.getElementById('start');
+  var filename = document.getElementById("saver").value; 
+
+  const handleSuccess = function(stream) {
+    const options = {mimeType: 'audio/webm'};
+    const recordedChunks = [];
+    const mediaRecorder = new MediaRecorder(stream, options);
+
+    mediaRecorder.addEventListener('dataavailable', function(e) {
+      if (e.data.size > 0) recordedChunks.push(e.data);
+    });
+
+    mediaRecorder.addEventListener('stop', function() {
+      downloadLink.href = URL.createObjectURL(new Blob(recordedChunks));
+      downloadLink.download = "hello.wav";
+    });
+
+    stopButton.addEventListener('click', function() {
+      mediaRecorder.stop();
+    });
+
+    startButton.addEventListener('click',function(){
+        mediaRecorder.start();
+    });
+  };
+  navigator.mediaDevices.getUserMedia({ audio: true, video: false })
+      .then(handleSuccess);
+</script>
+</body>
+</html>

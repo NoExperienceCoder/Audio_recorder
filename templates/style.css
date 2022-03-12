@@ -1,0 +1,96 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Patrick Hand', cursive;
+}
+.bg{
+    width:100%;
+    position: absolute;
+    z-index: -1;
+    opacity: 0.8;
+}
+.Mainframe{
+    max-width:70%;
+    background-color:transparent;
+    padding: 34px;
+    margin:auto;
+}
+.Mainframe h1{
+    text-align: center;
+    font-family: 'Sriracha', cursive;
+    font-size: 50px;
+}
+form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin:10px;
+}
+.Mainframe button:hover{
+    background: brown;
+    color:white;
+}
+.login{
+    max-width: 70%;
+    background-color:transparent;
+    padding: 34px;
+    margin:auto;
+}
+.login h2{
+    text-align: center;
+    font-size: 40px;
+}
+input{
+    width:300px;
+    border-radius: 6px;
+    margin:12px;
+    font-size: 20px;
+}
+.RegisCon{
+    max-width: 30%;
+    background-color:transparent;
+    padding: 34px;
+    margin:auto;
+}
+.RegisCon h2 {
+    text-align: center;
+    font-size: 40px;
+}
+.RegisCon h3{
+    text-align: center;
+    font-size: 30px;
+}
+button{
+    background:burlywood;
+    color: black;
+    padding: 14px 40px;
+    font-size: 20px;
+    width: 200px;
+    margin-top: 10px;
+    border-radius: 4px;  
+}
+button:hover{
+    background: brown;
+    color:white;
+}
+.Regiscon2{
+    max-width: 30%;
+    background-color:rgba(235, 170, 178, 0.993);
+    padding: 34px;
+    margin:auto;
+}
+.RecordPanel {
+    max-width: 30%;
+    background-color:transparent;
+    padding:100px ;
+    margin:auto;
+}
+.RecordPanel input{
+    width:250px;
+    border-radius: 6px;
+    margin:12px;
+    font-size: 20px;
+    
+}
